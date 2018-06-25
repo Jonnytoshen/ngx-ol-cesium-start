@@ -5,7 +5,7 @@ import View from 'ol/View';
 import Tile from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 
-import OLCesium from 'ol-cesium/src/olcs/OLCesium';
+import OLCesium from 'ol-cesium';
 
 @Component({
   selector: 'app-root',
@@ -37,6 +37,19 @@ export class AppComponent implements OnInit {
     const ol3D = new OLCesium({ map });
 
     ol3D.setEnabled(true);
+
+    const scene = ol3D.getCesiumScene();
+
+    scene.skyBox = new Cesium.SkyBox({
+      sources: {
+        positiveX : '/assets/images/skyBox/tycho2t3_80_px.jpg',
+        negativeX : '/assets/images/skyBox/tycho2t3_80_nx.jpg',
+        positiveY : '/assets/images/skyBox/tycho2t3_80_py.jpg',
+        negativeY : '/assets/images/skyBox/tycho2t3_80_ny.jpg',
+        positiveZ : '/assets/images/skyBox/tycho2t3_80_pz.jpg',
+        negativeZ : '/assets/images/skyBox/tycho2t3_80_nz.jpg'
+      }
+    });
 
   }
 
